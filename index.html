@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carosello</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <carousel-element class="carousel-element">
+
+        <div class="carousel-p" id="carousel-p">
+
+            <div>
+                <img  alt="" class="images-carousel">
+            </div>
+
+            <div>
+                <img  alt="" class="images-carousel">
+            </div>
+
+            <div>
+                <img  alt="" class="images-carousel">
+            </div>
+
+        </div>
+
+        <div class="button-container-p">
+
+            <div class="icon-container-p">
+                <img src="prev.png" alt="image-arrow-prev" id="prev-p">
+            </div>
+
+            <div class="icon-container-p">
+                <img src="next.png" alt="image-arrow-next" id="next-p">
+            </div>
+
+        </div>
+        
+    </carousel-element>
+
+    <script type="module">
+        import Carousel from './script.js';
+        customElements.define('carousel-element', Carousel);
+    </script>
+    
+</body>
+</html>
