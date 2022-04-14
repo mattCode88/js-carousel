@@ -7,7 +7,7 @@ export default class Carousel extends HTMLElement{
         this.prev = document.getElementById('prev-p');
         this.next = document.getElementById('next-p');
 
-        this.video = [
+        this.image = [
             'https://cdn.pixabay.com/photo/2018/05/17/09/18/away-3408119__480.jpg',
             'https://www.artemedialab.it/wp-content/uploads/2019/04/immagini-sfondo-1-700x400.jpg',
             'https://www.servizi-web-marketing.it/images/stories/news/immaginedascaricare.jpg',
@@ -18,42 +18,42 @@ export default class Carousel extends HTMLElement{
             'https://vitolavecchia.altervista.org/wp-content/uploads/2017/04/Formati-e-qualit%C3%A0-di-unimmagine-digitale.jpg'
         ];
 
-        this.indexVideo = 1;
+        this.indexImage = 1;
 
-        this.setVideo();
-        this.nextVideo();
-        this.prevVideo();
+        this.setImage();
+        this.nextImage();
+        this.prevImage();
     };
 
 
-    setVideo = () => {
+    setImage = () => {
 
-        this.imagesCarousel[0].setAttribute('src', this.video[this.indexVideo === 0 ? this.video.length - 1 : this.indexVideo - 1]);
-        this.imagesCarousel[1].setAttribute('src', this.video[this.indexVideo]);
-        this.imagesCarousel[2].setAttribute('src', this.video[this.indexVideo === this.video.length - 1 ? 0 : this.indexVideo + 1]);
+        this.imagesCarousel[0].setAttribute('src', this.image[this.indexImage === 0 ? this.image.length - 1 : this.indexImage - 1]);
+        this.imagesCarousel[1].setAttribute('src', this.image[this.indexImage]);
+        this.imagesCarousel[2].setAttribute('src', this.image[this.indexImage === this.image.length - 1 ? 0 : this.indexImage + 1]);
 
     };
 
-    nextVideo = () => {
+    nextImage = () => {
         this.next.addEventListener('click', e => {
 
-            this.indexVideo++;
+            this.indexImage++;
 
-            if (this.indexVideo > this.video.length - 1) this.indexVideo = 0;
+            if (this.indexImage > this.image.length - 1) this.indexImage = 0;
 
-            this.setVideo();
+            this.setImage();
             
         });
     };
 
-    prevVideo = () => {
+    prevImage = () => {
         this.prev.addEventListener('click', e => {
 
-            this.indexVideo--;
+            this.indexImage--;
 
-            if (this.indexVideo < 0) this.indexVideo = this.video.length - 1;
+            if (this.indexImage < 0) this.indexImage = this.image.length - 1;
 
-            this.setVideo();
+            this.setImage();
 
         });
     };
