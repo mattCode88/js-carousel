@@ -3,6 +3,7 @@ export default class Carousel extends HTMLElement{
         super();
 
         this.imagesCarousel = document.getElementsByClassName('images-carousel');
+        this.sliderContainer = document.getElementById('slider-container');
         this.prev = document.getElementById('prev');
         this.next = document.getElementById('next');
 
@@ -22,11 +23,15 @@ export default class Carousel extends HTMLElement{
 
         this.indexImage = 1;
 
-        this.setImage();
-        this.nextImage();
-        this.prevImage();
-    };
+        this.prev.addEventListener('click', this.prevImage);
+        this.next.addEventListener('click', this.nextImage);
+        this.sliderContainer.addEventListener('mouseenter', this.autoChange, true);
+        this.sliderContainer.addEventListener('mouseleave', this.autoChange);
 
+        this.setImage();
+        this.change = setInterval(this.nextImage, 5000);
+
+    };
 
     setImage = () => {
 
@@ -36,36 +41,48 @@ export default class Carousel extends HTMLElement{
 
     };
 
-    nextImage = () => {
-        this.next.addEventListener('click', e => {
+    nextImage = (e) => {
 
-            gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: -360 }, { duration: .5, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: -720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
-            gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: -720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
+        this.firstTime = 1;
+        this.secondTime = 1.5;
 
-            this.indexImage++;
+        if (e) {
+            this.firstTime = .5;
+            this.secondTime = 1;
+        }
 
-            if (this.indexImage > this.image.length - 1) this.indexImage = 0;
+        gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: -360 }, { duration: this.firstTime, opacity: 1, scale: 1, rotation: 0 });
+        gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: -720 }, { duration: this.secondTime, opacity: 0.4, scale: 1, rotation: 0 });
+        gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: -720 }, { duration: this.secondTime, opacity: 0.4, scale: 1, rotation: 0 });
 
-            this.setImage();
+        this.indexImage++;
+
+        if (this.indexImage > this.image.length - 1) this.indexImage = 0;
+
+        this.setImage();
             
-        });
     };
 
     prevImage = () => {
-        this.prev.addEventListener('click', e => {
 
-            gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: 360 }, { duration: .5, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
-            gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
+        gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: 360 }, { duration: .5, opacity: 1, scale: 1, rotation: 0 });
+        gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
+        gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
 
-            this.indexImage--;
+        this.indexImage--;
 
-            if (this.indexImage < 0) this.indexImage = this.image.length - 1;
+        if (this.indexImage < 0) this.indexImage = this.image.length - 1;
 
-            this.setImage();
+        this.setImage();
 
-        });
+    };
+
+    autoChange = (e) => {
+
+        if ((e.target.tagName === 'IMG' || e.target.tagName === 'I') && e.type === 'mouseenter') clearInterval(this.change);
+            
+        if(e.type === 'mouseleave') this.change = setInterval(this.nextImage, 5000);
+
     };
     
 };
