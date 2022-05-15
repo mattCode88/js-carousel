@@ -40,8 +40,8 @@ export default class Carousel extends HTMLElement{
         this.next.addEventListener('click', e => {
 
             gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: -360 }, { duration: .5, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image1', { opacity: 0, scale: 0, rotation: -720 }, { duration: 1, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image3', { opacity: 0, scale: 0, rotation: -720 }, { duration: 1, opacity: 1, scale: 1, rotation: 0 });
+            gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: -720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
+            gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: -720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
 
             this.indexImage++;
 
@@ -56,8 +56,8 @@ export default class Carousel extends HTMLElement{
         this.prev.addEventListener('click', e => {
 
             gsap.fromTo('.image2', { opacity: 0, scale: 0, rotation: 360 }, { duration: .5, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image1', { opacity: 0, scale: 0, rotation: 720 }, { duration: 1, opacity: 1, scale: 1, rotation: 0 });
-            gsap.fromTo('.image3', { opacity: 0, scale: 0, rotation: 720 }, { duration: 1, opacity: 1, scale: 1, rotation: 0 });
+            gsap.fromTo('.image1', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
+            gsap.fromTo('.image3', { opacity: 1, scale: 0, rotation: 720 }, { duration: 1, opacity: 0.4, scale: 1, rotation: 0 });
 
             this.indexImage--;
 
